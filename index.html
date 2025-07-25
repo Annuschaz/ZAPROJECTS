@@ -2,290 +2,429 @@
 <html lang="en" style="background-color: rgb(255, 255, 255);">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
+  <meta name="author" content="EnBizCard - An Open-Source Digital Business Card Generator" />
+  <meta name="url" content="https://enbizcard.vishnuraghav.com/" />
+  <meta name="designer" content="Vishnu Raghav" />
+  <meta property="og:title" content="Niel Scholtz's Digital Business Card" />
+  <meta property="twitter:title" content="Niel Scholtz's Digital Business Card" />
+  <script>
+    "http" == window.location.href.substr(0, 4) &&
+      "/" != window.location.href.slice(-1) &&
+      window.location.replace(window.location.href + "/");
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;display=swap"
+    rel="stylesheet"
+  />
   <title>Niel Scholtz's Digital Business Card</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
+    #body {
       font-family: 'Montserrat', sans-serif;
-      background-color: #fff;
-      margin: 0;
-      color: #222;
     }
-    header {
-      position: relative;
-      padding: 1rem;
-      display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
-      background: #000;
+    input[type='range']::-moz-range-track {
+      background: none;
     }
-    header a {
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
-      background-color: #111;
-      text-decoration: none;
-    }
-    header svg {
-      fill: #fff;
-      width: 24px;
-      height: 24px;
-    }
-    .headerImgC {
-      position: relative;
-      text-align: center;
-      margin-top: 0;
-    }
-    #cover {
-      width: 100%;
-      max-height: 160px;
-      object-fit: cover;
-    }
-    #logo {
-      margin: 3rem 0 6rem;
-      max-width: 120px;
-    }
-    #profilePhoto {
-      display: block;
-      margin: -80px auto 1rem auto;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 4px solid #000;
-      object-fit: cover;
-      background-color: #fff;
-    }
-    #info {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    #info .name {
-      font-weight: 600;
-      font-size: 2rem;
-      margin: 0;
-    }
-    #info .jobtitle,
-    #info .bizname,
-    #info .bizaddr {
-      margin: 0.2rem 0;
-      font-size: 1rem;
-    }
-    p.sub {
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      font-size: 1rem;
-      line-height: 1.4;
-      padding: 0 1rem;
-    }
-    #cta {
-      display: block;
-      width: max-content;
-      margin: 0 auto 2rem;
-      padding: 0.7rem 1.5rem;
-      background: #000;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 6px;
-      text-align: center;
-    }
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-      padding: 0 1rem;
-    }
-    .actionBtn {
-      background: #000;
-      border-radius: 6px;
-      color: #fff;
-      padding: 0.6rem 1rem;
-      text-align: center;
-      max-width: 140px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      justify-content: center;
-    }
-    .actionBtn svg {
-      fill: #fff;
-      width: 20px;
-      height: 20px;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #555;
-      margin-top: 3rem;
-      padding-bottom: 1rem;
-    }
-    #modal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      max-width: 300px;
-      text-align: center;
-      z-index: 10000;
-    }
-    #modal.show {
-      display: block;
-    }
-    #modal canvas {
-      max-width: 100%;
-      height: auto;
-    }
-    #modal button {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: #000;
-      color: #fff;
+    input[type='range']::-moz-range-thumb {
+      -moz-appearance: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 100%;
       border: none;
-      border-radius: 6px;
+      background: #000000;
+      z-index: 3;
       cursor: pointer;
+    }
+    input[type='range']::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 100%;
+      border: none;
+      background: #000000;
+      z-index: 3;
+      cursor: pointer;
+    }
+    .closeColor {
+      filter: invert(1);
+    }
+    .topAction {
+      filter: invert(1);
+    }
+    .iconColor {
+      color: #eee;
+    }
+    .cardColor {
+      color: #222 !important;
+    }
+    .textColor {
+      color: #222 !important;
+    }
+    .seekbarColor {
+      background: #00000080 !important;
     }
   </style>
+  <link rel="stylesheet" href="./style.min.css" />
 </head>
-<body>
+<body id="body">
+  <div
+    id="modal"
+    style="background-color: rgb(255, 255, 255); visibility: hidden; top: 2rem; opacity: 0"
+  >
+    <a id="close" class="closeColor">
+      <div class="icon">
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          xml:space="preserve"
+          style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+        >
+          <path style="fill:none" d="M0 0h24v24H0z"></path>
+          <path
+            d="M18 6 6 18M6 6l12 12"
+            style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"
+          ></path>
+        </svg>
+      </div>
+    </a>
+    <div id="keyView">
+      <p class="textColor">Use my public key to send me encrypted messages</p>
+      <a
+        download=""
+        target="_blank"
+        id="dlKey"
+        rel="noreferrer"
+        tabindex="-1"
+        href="./Niel Scholtz's public key.asc"
+        style="background-color: rgb(0, 0, 0)"
+      >
+        <div class="icon iconColor">
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            xml:space="preserve"
+            style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+          >
+            <path style="fill:none" d="M0 0h24v24H0z"></path>
+            <path
+              d="M21 15v4c0 1.097-.903 2-2 2H5c-1.097 0-2-.903-2-2v-4m4-5 5 5 5-5m-5 5V3"
+              style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"
+            ></path>
+          </svg>
+        </div>
+        <span class="iconColor">Download Key</span>
+      </a>
+    </div>
+    <div id="copyView">
+      <p class="textColor">Copy and send the URL to share my Business Card</p>
+      <button id="copyURL" style="background-color: rgb(0, 0, 0)">
+        <div class="icon iconColor">
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            xml:space="preserve"
+            style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+          >
+            <path style="fill:none" d="M0 0h24v24H0z"></path>
+            <path
+              d="M22 11a2 2 0 0 0-2-2h-9a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9Z"
+              style="fill:none;stroke:#fff;stroke-width:2px"
+            ></path>
+            <path
+              d="M5 15H4c-1.097 0-2-.903-2-2V4c0-1.097.903-2 2-2h9c1.097 0 2 .903 2 2v1"
+              style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"
+            ></path>
+          </svg>
+        </div>
+        <span class="iconColor">Copy URL</span>
+      </button>
+    </div>
+    <div id="qrView" class="textColor">
+      <div id="qr"></div>
+      <h3>Scan the QR Code</h3>
+      <p>to view my Business Card on another device</p>
+    </div>
+  </div>
+  <header>
+    <div id="topActions" style="display: flex; justify-content: flex-end; gap: 10px; padding: 10px 15px;">
+      <a id="share" href="#" title="Share">
+        <div class="icon topAction">
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            xml:space="preserve"
+            style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+          >
+            <g>
+              <path style="fill:none" d="M0 0h24v24H0z"></path>
+              <clipPath id="a">
+                <path d="M0 0h24v24H0z"></path>
+              </clipPath>
+              <g clip-path="url(#a)">
+                <circle cx="17" cy="5" r="3" style="fill:none;stroke:#fff;stroke-width:2px"></circle>
+                <circle cx="5" cy="12" r="3" style="fill:none;stroke:#fff;stroke-width:2px"></circle>
+                <circle cx="17" cy="19" r="3" style="fill:none;stroke:#fff;stroke-width:2px"></circle>
+                <path
+                  d="m7.59 13.51 6.83 3.98m-.01-10.98-6.82 3.98"
+                  style="fill:none;stroke:#fff;stroke-width:2px"
+                ></path>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </a>
+      <a id="showQR" href="#" title="Show QR" style="margin-right: 10px;">
+        <div class="icon topAction">
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            xml:space="preserve"
+            style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+          >
+            <path style="fill:none" d="M0 0h24v24H0z"></path>
+            <path
+              d="M4 4h4v4H4V4Zm0 12h4v4H4v-4ZM16 4h4v4h-4V4Z"
+              style="fill:none;stroke:#fff;stroke-width:2px"
+            ></path>
+            <path
+              d="M12 4v14c0 1.097.903 2 2 2h4c1.097 0 2-.903 2-2v-4c0-1.097-.903-2-2-2H4"
+              style="fill:none;stroke:#fff;stroke-width:2px;stroke-linejoin:miter"
+            ></path>
+            <path style="fill:#fff" d="M15 15h2v2h-2z"></path>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </header>
+  <div class="headerImgC">
+    <img id="cover" src="./cover.jpeg" alt="Background Pattern" />
+    <img id="logo" src="./logo.jpeg" alt="Logo" style="margin: 3rem 0px 6rem" />
+  </div>
+  <main style="background-color: rgb(255, 255, 255); margin-top: 0px;">
+    <img id="profilePhoto" src="./photo.jpeg" alt="Photo" />
+    <div id="info" class="textColor">
+      <p class="name">Niel Scholtz</p>
+      <p class="jobtitle">Director</p>
+      <p class="bizname">ZA PROJECT MANAGEMENT AND CONSULTING</p>
+      <p class="bizaddr">
+        Unit 5A Icon Business Park Fourie Street, Brackenfell, Western Cape
+      </p>
+    </div>
+    <p class="sub textColor">
+      ZA Projects is a Cape Town-based project management firm with over 20
+      years of combined experience in managing Electronic Safety &amp; Security
+      projects across South Africa. We offer end-to-end project management,
+      from initial concept and planning to final sign-off and closure. Our
+      flexible approach allows us to tailor our level of involvement to suit
+      each client's specific needs and project brief ensuring seamless
+      execution and peace of mind throughout the project lifecycle.
+    </p>
+    <a
+      id="cta"
+      rel="noreferrer"
+      download=""
+      target="_blank"
+      aria-label="Save Contact"
+      href="nielscholtz.vcf"
+      style="background-color: rgb(0, 0, 0)"
+    >
+      <div class="icon iconColor">
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          xml:space="preserve"
+          style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+        >
+          <path style="fill:none" d="M0 0h24v24H0z"></path>
+          <circle
+            cx="8.5"
+            cy="7"
+            r="4"
+            style="fill:none;stroke:#fff;stroke-width:2.29px"
+            transform="matrix(.875 0 0 .875 4.563 -.625)"
+          ></circle>
+          <path
+            d="M86 181c0-3.863 3.137-7 7-7s7 3.137 7 7"
+            style="fill:none;stroke:#fff;stroke-width:2px"
+            transform="translate(-81 -163)"
+          ></path>
+          <path
+            d="M104 168v6m3-3-3 3-3-3"
+            style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"
+            transform="translate(-92 -152)"
+          ></path>
+        </svg>
+      </div>
+      <p class="iconColor">Save Contact</p>
+    </a>
+    <div class="actions">
+      <div class="actionsC">
+        <div class="actionBtn">
+          <a
+            href="tel:0825523707"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Mobile"
+            style="background-color: rgb(0, 0, 0)"
+            ><div class="icon iconColor">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                xml:space="preserve"
+                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+              >
+                <path style="fill:none" d="M0 0h24v24H0z"></path>
+                <path
+                  d="M11.5 22a.952.952 0 0 1-1.052.945c-4.358-.544-7.851-4.338-8.379-8.39a.938.938 0 0 1 .936-1.046c.399-.009.847-.009 1.202-.009.388 0 .738.237.882.597l.478 1.196a.95.95 0 0 1-.21 1.025l-.107.107a.951.951 0 0 0-.181 1.091c.495.825 1.59 1.92 2.425 2.396a.927.927 0 0 0 1.066-.177c.05-.02.086-.056.122-.092a.95.95 0 0 1 1.025-.21l1.196.478c.36.144.597.493.597.882 0 .355 0 .803-.009 1.202a.938.938 0 0 1-.926.933z"
+                  style="fill:#fff;fill-rule:nonzero"
+                ></path>
+              </svg>
+            </div>
+            <p class="iconColor">Mobile</p></a
+          >
+        </div>
+        <div class="actionBtn">
+          <a
+            href="https://osm.org/go/location/Unit 5A Icon Business Park Fourie Street, Brackenfell, Western Cape"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Location"
+            style="background-color: rgb(0, 0, 0)"
+            ><div class="icon iconColor">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                xml:space="preserve"
+                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+              >
+                <path style="fill:none" d="M0 0h24v24H0z"></path>
+                <path
+                  d="M12 21c5.523 0 10-4.478 10-10 0-5.522-4.477-10-10-10-5.522 0-10 4.478-10 10 0 5.522 4.478 10 10 10z"
+                  style="fill:none;stroke:#fff;stroke-width:2px"
+                ></path>
+                <path
+                  d="M12 14a4 4 0 0 1-4-4 4 4 0 0 1 8 0 4 4 0 0 1-4 4z"
+                  style="fill:none;stroke:#fff;stroke-width:2px"
+                ></path>
+              </svg>
+            </div>
+            <p class="iconColor">Location</p></a
+          >
+        </div>
+        <div class="actionBtn">
+          <a
+            href="https://zaprojects.co.za"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Website"
+            style="background-color: rgb(0, 0, 0)"
+            ><div class="icon iconColor">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                xml:space="preserve"
+                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  style="fill:none;stroke:#fff;stroke-width:2px"
+                ></circle>
+                <path
+                  d="M2 12h20"
+                  style="fill:none;stroke:#fff;stroke-width:2px"
+                ></path>
+                <path
+                  d="M12 2a15 15 0 0 1 0 20"
+                  style="fill:none;stroke:#fff;stroke-width:2px"
+                ></path>
+              </svg>
+            </div>
+            <p class="iconColor">Website</p></a
+          >
+        </div>
+        <div class="actionBtn">
+          <a
+            href="https://wa.me/27825523707"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            style="background-color: rgb(0, 0, 0)"
+            ><div class="icon iconColor">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                xml:space="preserve"
+                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2"
+              >
+                <path
+                  d="M20.52 3.48a11.74 11.74 0 0 0-16.6 16.6L2 22l2.92-.76a11.74 11.74 0 0 0 15.6-17.76z"
+                  style="fill:none;stroke:#fff;stroke-width:2px"
+                ></path>
+                <path
+                  d="M17 14c-.29.29-2.5-1.09-2.79-1.38a1.06 1.06 0 0 0-1.42 0L11 14l-2.7-1.7a1 1 0 0 1 0-1.42l.79-.79a1.06 1.06 0 0 1 1.42 0l3.87 3.87a1 1 0 0 1 0 1.42z"
+                  style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:2px"
+                ></path>
+              </svg>
+            </div>
+            <p class="iconColor">WhatsApp</p></a
+          >
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    Created by ZA PROJECTS
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+  <script>
+    let modal = document.getElementById('modal');
+    let keyView = document.getElementById('keyView');
+    let copyView = document.getElementById('copyView');
+    let qrView = document.getElementById('qrView');
+    let showQRBtn = document.getElementById('showQR');
+    let closeBtn = document.getElementById('close');
+    let shareBtn = document.getElementById('share');
+    let qrContainer = document.getElementById('qr');
 
-<header id="topActions">
-  <a id="share" href="#" title="Share Card" aria-label="Share Card">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="17" cy="5" r="3" stroke="#fff" stroke-width="2" fill="none"></circle>
-      <circle cx="5" cy="12" r="3" stroke="#fff" stroke-width="2" fill="none"></circle>
-      <circle cx="17" cy="19" r="3" stroke="#fff" stroke-width="2" fill="none"></circle>
-      <path d="M7.59 13.51l6.83 3.98m-.01-10.98L7.59 13.51" stroke="#fff" stroke-width="2" fill="none"/>
-    </svg>
-  </a>
-  <a id="showQR" href="#" title="Show QR Code" aria-label="Show QR Code">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="4" width="4" height="4" stroke="#fff" stroke-width="2" fill="none"></rect>
-      <rect x="4" y="16" width="4" height="4" stroke="#fff" stroke-width="2" fill="none"></rect>
-      <rect x="16" y="4" width="4" height="4" stroke="#fff" stroke-width="2" fill="none"></rect>
-      <path d="M12 4v14c0 1.097.903 2 2 2h4c1.097 0 2-.903 2-2v-4c0-1.097-.903-2-2-2H4" stroke="#fff" stroke-width="2" fill="none"/>
-      <rect x="15" y="15" width="2" height="2" fill="#fff"></rect>
-    </svg>
-  </a>
-</header>
-
-<div class="headerImgC">
-  <img id="cover" src="./cover.jpeg" alt="Background Pattern" />
-  <img id="logo" src="./logo.jpeg" alt="Logo" />
-</div>
-
-<img id="profilePhoto" src="./photo.jpeg" alt="Photo" />
-
-<div id="info" class="textColor">
-  <p class="name">Niel Scholtz</p>
-  <p class="jobtitle">Director</p>
-  <p class="bizname">ZA PROJECT MANAGEMENT AND CONSULTING</p>
-  <p class="bizaddr">Unit 5A Icon Business Park Fourie Street, Brackenfell, Western Cape</p>
-</div>
-
-<p class="sub textColor">
-  ZA Projects is a Cape Town-based project management firm with over 20 years of combined experience in managing Electronic Safety & Security projects across South Africa. We offer end-to-end project management, from initial concept and planning to final sign-off and closure. Our flexible approach allows us to tailor our level of involvement to suit each client's specific needs and project brief ensuring seamless execution and peace of mind throughout the project lifecycle.
-</p>
-
-<a id="cta" href="nielscholtz.vcf" download aria-label="Save Contact" style="background-color: rgb(0, 0, 0); color:#fff; display:block; width:max-content; margin:0 auto 2rem; padding:0.7rem 1.5rem; border-radius:6px; text-align:center; text-decoration:none;">
-  Save Contact
-</a>
-
-<div class="actions">
-  <a class="actionBtn" href="tel:0825523707" aria-label="Call Mobile">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.35 12.35 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9 9a16 16 0 0 0 6 6l1.36-1.36a2 2 0 0 1 2.11-.45 12.35 12.35 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-    </svg>
-    Mobile
-  </a>
-
-  <a class="actionBtn" href="https://www.openstreetmap.org/search?query=Unit%205A%2C%20Icon%20Business%20Park%2C%20Fourie%20Street%2C%20Brackenfell%2C%20Western%20Cape" target="_blank" rel="noopener noreferrer" aria-label="Open Location">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"></path>
-      <circle cx="12" cy="10" r="3"></circle>
-    </svg>
-    Location
-  </a>
-
-  <a class="actionBtn" href="https://www.zaprojects.co.za" target="_blank" rel="noopener noreferrer" aria-label="Visit Website">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="10"></circle>
-      <path d="M2 12h20"></path>
-      <path d="M12 2a15 15 0 0 1 0 20"></path>
-    </svg>
-    Website
-  </a>
-
-  <a class="actionBtn" href="https://wa.me/27825523707" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20.52 3.48a11.74 11.74 0 0 0-16.6 16.6L2 22l2.92-.76a11.74 11.74 0 0 0 15.6-17.76z"></path>
-      <path d="M17 14c-.29.29-2.5-1.09-2.79-1.38a1.06 1.06 0 0 0-1.42 0L11 14l-2.7-1.7a1 1 0 0 1 0-1.42l.79-.79a1.06 1.06 0 0 1 1.42 0l3.87 3.87a1 1 0 0 1 0 1.42z"></path>
-    </svg>
-    WhatsApp
-  </a>
-</div>
-
-<footer>
-  Created by ZA PROJECTS
-</footer>
-
-<!-- QR Code modal -->
-<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
-  <h2 id="modalTitle">Scan QR Code</h2>
-  <div id="qr"></div>
-  <button id="closeModal" aria-label="Close QR Code Modal">Close</button>
-</div>
-
-<!-- Include QRCode.js library -->
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
-<script>
-  const modal = document.getElementById('modal');
-  const qrContainer = document.getElementById('qr');
-  const showQRBtn = document.getElementById('showQR');
-  const closeModalBtn = document.getElementById('closeModal');
-  const shareBtn = document.getElementById('share');
-
-  showQRBtn.addEventListener('click', e => {
-    e.preventDefault();
-    modal.style.display = 'block';
-    QRCode.toCanvas(qrContainer, window.location.href, { width: 200 }, err => {
-      if (err) console.error(err);
-    });
-  });
-
-  closeModalBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    qrContainer.innerHTML = ''; // clear QR code to avoid duplicates
-  });
-
-  shareBtn.addEventListener('click', e => {
-    e.preventDefault();
-    if (navigator.share) {
-      navigator.share({
-        title: document.title,
-        url: window.location.href
-      }).catch(console.error);
-    } else {
-      alert('Share this link: ' + window.location.href);
+    function hideAllViews() {
+      keyView.style.display = 'none';
+      copyView.style.display = 'none';
+      qrView.style.display = 'none';
     }
-  });
-</script>
 
+    closeBtn.addEventListener('click', () => {
+      modal.style.opacity = 0;
+      modal.style.visibility = 'hidden';
+      qrContainer.innerHTML = '';
+    });
+
+    showQRBtn.addEventListener('click', e => {
+      e.preventDefault();
+      hideAllViews();
+      qrView.style.display = 'block';
+      modal.style.visibility = 'visible';
+      modal.style.opacity = 1;
+      QRCode.toCanvas(qrContainer, window.location.href, { width: 200 }, err => {
+        if (err) console.error(err);
+      });
+    });
+
+    shareBtn.addEventListener('click', e => {
+      e.preventDefault();
+      if (navigator.share) {
+        navigator
+          .share({
+            title: document.title,
+            url: window.location.href
+          })
+          .catch(console.error);
+      } else {
+        alert('Share this link: ' + window.location.href);
+      }
+    });
+  </script>
 </body>
 </html>
-
-
